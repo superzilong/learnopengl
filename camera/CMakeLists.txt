@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(Camera)
+include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
+find_package(glfw3)
+find_package(glad)
+find_package(stb)
+find_package(glm)
+
+SET(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_executable(Camera main.cpp shader.h camera.h)
+target_link_libraries(Camera glad::glad)
+target_link_libraries(Camera glfw::glfw)
+target_link_libraries(Camera glm::glm)
+target_link_libraries(Camera stb::stb)
