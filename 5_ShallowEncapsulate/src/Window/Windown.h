@@ -2,7 +2,8 @@
 
 #include <functional>
 #include <GLFW/glfw3.h>
-#include "OpenGLContext.h"
+#include "../OpenGL/OpenGLContext.h"
+#include "Events/Event.h"
 #include <string>
 
 namespace gen {
