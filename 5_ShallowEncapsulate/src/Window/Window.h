@@ -2,9 +2,12 @@
 
 #include <functional>
 #include <GLFW/glfw3.h>
-#include "../OpenGL/OpenGLContext.h"
 #include "Events/Event.h"
 #include <string>
+
+namespace gen {
+	class OpenGLRenderContext;
+}
 
 namespace gen {
 
@@ -32,8 +35,8 @@ namespace gen {
 
 		void OnUpdate();
 
-		unsigned int GetWidth() const { return m_Data.Width; }
-		unsigned int GetHeight() const{ return m_Data.Height; }
+		uint32_t GetWidth() const { return m_Data.Width; }
+		uint32_t GetHeight() const{ return m_Data.Height; }
 
 		// Window attributes
 		void SetEventCallback(const EventCallbackFn& callback) { m_Data.EventCallback = callback; }
@@ -44,9 +47,9 @@ namespace gen {
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
-	private:
-		GLFWwindow* m_Window;
-		std::unique_ptr<GraphicsContext> m_Context;
+
+		GLFWwindow* m_Window = nullptr;
+		std::unique_ptr<OpenGLRenderContext> m_Context;
 
 		struct WindowData
 		{
@@ -59,5 +62,4 @@ namespace gen {
 
 		WindowData m_Data;
 	};
-
 }
