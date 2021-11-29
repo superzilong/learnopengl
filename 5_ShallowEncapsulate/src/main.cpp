@@ -6,7 +6,6 @@
 int main(int argc, char* argv[])
 {
 	Log::Init();
-	GEN_ASSERT(0);
 	gen::WindowProps props;
 	gen::Window win(props);
 	return 0;

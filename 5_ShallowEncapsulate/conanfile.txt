@@ -7,3 +7,7 @@ spdlog/1.9.2
 
 [generators]
 cmake_find_package_multi
+
+[options]
+glad:gl_profile=core
+glad:gl_version=4.5
