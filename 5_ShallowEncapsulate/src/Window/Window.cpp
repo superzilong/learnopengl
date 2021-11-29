@@ -1,12 +1,12 @@
 #include "Window.h"
 #include "../OpenGL/OpenGLRenderContext.h"
 
-
 namespace gen
 {
 	Window::Window(const WindowProps& props)
 	{
 		Init(props);
+		std::string hel = "hello";
 	}
 
 	Window::~Window()
