@@ -1,8 +1,10 @@
 #pragma once
 #include <memory>
 #include <string>
-
 #include "Core/Base.h"
+#include <glm/glm.hpp>
+
+typedef unsigned int GLenum;
 
 namespace gen
 {
@@ -24,10 +26,30 @@ namespace gen
 		void SetFloat4();
 		void SetMat4();
 
-		const std::string& GetName();
+		const std::string& GetName() const { return m_name; }
+
+		void UploadUniformInt(const std::string& name, int value);
+		void UploadUniformIntArray(const std::string& name, int* values, uint32_t count);
+
+		void UploadUniformFloat(const std::string& name, float value);
+		void UploadUniformFloat2(const std::string& name, const glm::vec2& value);
+		void UploadUniformFloat3(const std::string& name, const glm::vec3& value);
+		void UploadUniformFloat4(const std::string& name, const glm::vec4& value);
+
+		void UploadUniformMat3(const std::string& name, const glm::mat3& matrix);
+		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
+
 
 		static SP<OpenGLShader> Create(const std::string& filepath);
 		static SP<OpenGLShader> Create(const std::string& name, const std::string& veterSrc, const std::string& fragmentSrc );
+
+	private:
+		std::string ReadFile(const std::string& filepath);
+		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
+		void Compile(const std::unordered_map<GLenum, std::string>& shaderSources);
+	
+		uint32_t m_rendererID;
+		std::string m_name;
 	};
 
 	class ShaderLibrary
