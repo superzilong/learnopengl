@@ -13,5 +13,11 @@
         } \
     } while (false)
 #else
-#   define GEN_ASSERT(condition, message) do { } while (false)
+#   define GEN_ASSERT(condition, ...) \
+	    do { \
+        if (! (condition)) { \
+            GEN_LOG_ERROR("Assertion `{0}` failed in {1} {2} {3}: {4}", #condition, __FILENAME__ \
+                      , " line ", __LINE__, fmt::format(__VA_ARGS__)); \
+        } \
+    } while (false)
 #endif

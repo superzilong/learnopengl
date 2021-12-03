@@ -17,7 +17,7 @@ namespace gen {
 		uint32_t Width;
 		uint32_t Height;
 
-		WindowProps(const std::string& title = "Hazel Engine",
+		WindowProps(const std::string& title = "Graphic Engine",
 			uint32_t width = 1600,
 			uint32_t height = 900)
 			: Title(title), Width(width), Height(height)
@@ -35,21 +35,21 @@ namespace gen {
 
 		void OnUpdate();
 
-		uint32_t GetWidth() const { return m_Data.Width; }
-		uint32_t GetHeight() const{ return m_Data.Height; }
+		uint32_t GetWidth() const { return m_data.Width; }
+		uint32_t GetHeight() const{ return m_data.Height; }
 
 		// Window attributes
-		void SetEventCallback(const EventCallbackFn& callback) { m_Data.EventCallback = callback; }
+		void SetEventCallback(const EventCallbackFn& callback) { m_data.EventCallback = callback; }
 		void SetVSync(bool enabled);
 		bool IsVSync() const;
 
-		virtual void* GetNativeWindow() const { return m_Window; }
+		virtual void* GetNativeWindow() const { return m_glfwWin; }
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
 
-		GLFWwindow* m_Window = nullptr;
-		std::unique_ptr<OpenGLRenderContext> m_Context;
+		GLFWwindow* m_glfwWin = nullptr;
+		std::unique_ptr<OpenGLRenderContext> m_context;
 
 		struct WindowData
 		{
@@ -60,6 +60,6 @@ namespace gen {
 			EventCallbackFn EventCallback;
 		};
 
-		WindowData m_Data;
+		WindowData m_data;
 	};
 }
