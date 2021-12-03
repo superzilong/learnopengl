@@ -8,14 +8,14 @@
 
 namespace gen
 {
-	OpenGLRenderContext::OpenGLRenderContext(GLFWwindow* windowHandle) : m_WindowHandle(windowHandle)
+	OpenGLRenderContext::OpenGLRenderContext(GLFWwindow* windowHandle) : m_windowHandle(windowHandle)
 	{
 		GEN_ASSERT(windowHandle, "Window handle is null!");
 	}
 
 	void OpenGLRenderContext::Init()
 	{
-		glfwMakeContextCurrent(m_WindowHandle);
+		glfwMakeContextCurrent(m_windowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		GEN_ASSERT(status, "Failed to initialize Glad!");
 
@@ -29,5 +29,6 @@ namespace gen
 
 	void OpenGLRenderContext::SwapBuffers()
 	{
+		glfwSwapBuffers(m_windowHandle);
 	}
 }

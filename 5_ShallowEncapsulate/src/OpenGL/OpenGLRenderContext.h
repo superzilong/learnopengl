@@ -12,7 +12,7 @@ namespace gen {
 		virtual void Init();
 		virtual void SwapBuffers();
 	private:
-		GLFWwindow* m_WindowHandle;
+		GLFWwindow* m_windowHandle;
 	};
 
 }
